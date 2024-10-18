@@ -1,11 +1,10 @@
 # pirate.py
-
 class Pirate:
     def __init__(self, name):
         self.__name = name
-        self.__inventory = ['Gold Piece']  # Start with a single Gold Piece
-        self.__ship = None  # No ship initially
-        self.__health = 100  # Health starts at 100
+        self.__health = 100
+        self.__inventory = [Loot("Gold Piece", "A shiny piece of gold")]
+        self.__ship = None
 
     # Getter for pirate's name
     def get_name(self):
@@ -98,4 +97,35 @@ class Pirate:
     def __str__(self):
         ship_name = self.__ship.get_name() if self.__ship else "No Ship"
         return f"Pirate: {self.__name}, Ship: {ship_name}, Inventory: {self.__inventory}"
+ # Method to loot a ship if it is broken
+    def loot_ship(self, enemy_ship):
+        if enemy_ship.is_broken():
+            for item in enemy_ship.get_cargo():
+                self.__inventory.append(item)
+            enemy_ship.clear_cargo()  # Clear enemy ship's cargo after looting
+            print(f"{self.__name} has looted the ship and taken all the cargo!")
+        else:
+            print(f"{enemy_ship.get_name()} is not fully broken yet! Cannot loot.")
 
+    # Method to store an item from pirate's inventory into their own ship's cargo
+    def store_loot_in_cargo(self, loot_name):
+        if self.__ship:
+            for item in self.__inventory:
+                if item.get_name() == loot_name:
+                    self.__ship.add_to_cargo(item)
+                    self.__inventory.remove(item)
+                    print(f"{loot_name} stored in {self.__ship.get_name()}'s cargo.")
+                    return
+            print(f"{loot_name} not found in inventory.")
+        else:
+            print("Pirate has no ship to store items.")
+
+    # Method to retrieve an item from the ship's cargo into the pirate's inventory
+    def retrieve_loot_from_cargo(self, loot_name):
+        if self.__ship:
+            loot = self.__ship.retrieve_loot(loot_name)
+            if loot:
+                self.__inventory.append(loot)
+                print(f"{loot_name} retrieved from {self.__ship.get_name()}'s cargo.")
+        else:
+            print("Pirate has no ship to retrieve items from.")
