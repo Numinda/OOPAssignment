@@ -60,7 +60,7 @@ def main():
 
     # Test retrieving loot from ship's cargo
     print("\n--- Test Retrieving Loot from Ship's Cargo ---")
-    blackbeard.retrieve_loot_from_cargo("Cannonball")  # Should succeed if cargo has it
+    blackbeard.retrieve_loot_from_ship("Cannonball")  # Should succeed if cargo has it
 
     # Attempt to use methods without a ship
     print("\n--- Test Actions Without Ship ---")
