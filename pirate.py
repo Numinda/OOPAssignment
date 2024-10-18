@@ -99,8 +99,3 @@ class Pirate:
         ship_name = self.__ship.get_name() if self.__ship else "No Ship"
         return f"Pirate: {self.__name}, Ship: {ship_name}, Inventory: {self.__inventory}"
 
-
-
-    def __str__(self):
-        ship_name = self.__ship.get_name() if self.__ship else "No Ship"
-        return f"Pirate: {self.__name}, Ship: {ship_name}, Inventory: {self.__inventory}"
