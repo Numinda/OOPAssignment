@@ -3,9 +3,22 @@
 class Ship:
     def __init__(self, name):
         self.__name = name
-        self.__damage_counter = 0  # Ship starts with no damage
-        self.__is_broken = False  # Ship starts in working condition
-        self.__cargo = ['Cannonball', 'Cannonball', 'Eye Patch']  # Default cargo
+        self.__damage_counter = 0
+        self.__is_broken = False
+        self.__cargo = []  # Cargo starts empty
+        # Add initial loot: 2 Cannonballs and 1 Eye Patch
+        self.__cargo.append(Loot("Cannonball", "A heavy ball for cannon fire"))
+        self.__cargo.append(Loot("Cannonball", "A heavy ball for cannon fire"))
+        self.__cargo.append(Loot("Eye Patch", "A classic pirate accessory"))
+
+    # Retrieve loot from the cargo (specific item or all items)
+    def retrieve_loot(self, loot_name):
+        for item in self.__cargo:
+            if item.get_name() == loot_name:
+                self.__cargo.remove(item)
+                return item
+        print(f"No {loot_name} found in the cargo.")
+        return None
 
     # Getter for ship's name
     def get_name(self):
