@@ -1,4 +1,5 @@
 # ship.py
+from loot import Loot 
 
 class Ship:
     def __init__(self, name):
