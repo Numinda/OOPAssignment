@@ -1,4 +1,6 @@
 # pirate.py
+from loot import Loot
+
 class Pirate:
     def __init__(self, name):
         self.__name = name
