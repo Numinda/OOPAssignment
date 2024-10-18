@@ -92,10 +92,10 @@ class Ship:
     def clear_cargo(self):
         self.__cargo.clear()
 
-    # String conversion method to represent the ship
-    def __str__(self):
-        condition = self.get_condition()
-        cargo_contents = ', '.join(str(item) for item in self.__cargo) if self.__cargo else "Empty"
-        return f"Ship: {self.__name}, Condition: {condition}, Cargo: {cargo_contents}"
-
+# String conversion method to represent the ship
+def __str__(self):
+    condition = self.get_condition()
+    cargo_contents = ', '.join(str(item) for item in self.__cargo) if self.__cargo else "Empty"
+    return f"Ship: {self.__name}, Condition: {condition}, Cargo: {cargo_contents}"
+   
 
