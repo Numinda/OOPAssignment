@@ -1,12 +1,36 @@
 # pirate.py
 from loot import Loot
+from ship import Ship
 
 class Pirate:
-    def __init__(self, name):
-        self.__name = name
-        self.__health = 100
-        self.__inventory = [Loot("Gold Piece", "A shiny piece of gold")]
-        self.__ship = None
+  def __init__(self, name):
+        self.__name = name  # Pirate's name
+        self.__inventory = [Loot("Gold Piece", "A shiny piece of gold")]  # Start with one Gold Piece
+        self.__ship = None  # Pirate starts without a ship
+        self.__health = 100  # Pirate's health
+      
+def purchase_ship(self, ship):
+        if self.has_gold_piece():  # Check if the pirate has a Gold Piece
+            self.__inventory.remove(self.search_inventory("Gold Piece"))  # Remove the Gold Piece
+            self.__ship = ship  # Set the ship
+            print(f"{self.__name} has purchased the ship: {ship.get_name()}!")  # Print confirmation
+        else:
+            print(f"{self.__name} does not have enough gold to purchase a ship.")
+
+    def has_gold_piece(self):
+        # Check if the pirate has a Gold Piece in their inventory
+        return any(item.get_name() == "Gold Piece" for item in self.__inventory)
+
+    def search_inventory(self, item_name):
+        # Searches for an item in the pirate's inventory
+        for item in self.__inventory:
+            if item.get_name() == item_name:
+                return item
+        print(f"{self.__name} does not have any {item_name}.")
+        return None
+
+def get_ship(self):
+        return self.__ship  # Getter for the pirate's ship
 
     # Getter for pirate's name
     def get_name(self):
