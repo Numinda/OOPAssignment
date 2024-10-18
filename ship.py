@@ -6,15 +6,10 @@ class Ship:
         self.__damage_counter = 0
         self.__is_broken = False
         self.__cargo = []  # Cargo starts empty
-        self.__owner = None  # Initialize the ship owner as None
         # Add initial loot: 2 Cannonballs and 1 Eye Patch
         self.__cargo.append(Loot("Cannonball", "A heavy ball for cannon fire"))
         self.__cargo.append(Loot("Cannonball", "A heavy ball for cannon fire"))
         self.__cargo.append(Loot("Eye Patch", "A classic pirate accessory"))
-
-    # Set the ship's owner
-    def set_owner(self, pirate):
-        self.__owner = pirate  # Set the pirate as the owner of the ship
 
     # Retrieve loot from the cargo (specific item or all items)
     def retrieve_loot(self, loot_name):
@@ -66,13 +61,13 @@ class Ship:
 
     # Method to retrieve an item from the cargo
     def retrieve_item(self, item_name):
-        for item in self.__cargo:
-            if item.get_name() == item_name:
-                self.__cargo.remove(item)
-                print(f"Retrieved {item_name} from {self.__name}'s cargo.")
-                return item
-        print(f"{item_name} not found in {self.__name}'s cargo.")
-        return None
+        if item_name in self.__cargo:
+            self.__cargo.remove(item_name)
+            print(f"Retrieved {item_name} from {self.__name}'s cargo.")
+            return item_name
+        else:
+            print(f"{item_name} not found in {self.__name}'s cargo.")
+            return None
 
     # Method to check if the cargo has items
     def has_cargo(self):
@@ -92,10 +87,10 @@ class Ship:
     def clear_cargo(self):
         self.__cargo.clear()
 
-# String conversion method to represent the ship
-def __str__(self):
-    condition = self.get_condition()
-    cargo_contents = ', '.join(str(item) for item in self.__cargo) if self.__cargo else "Empty"
-    return f"Ship: {self.__name}, Condition: {condition}, Cargo: {cargo_contents}"
-   
+    # String conversion method to represent the ship
+    def __str__(self):
+        condition = self.get_condition()
+        cargo_contents = ', '.join(str(item) for item in self.__cargo) if self.__cargo else "Empty"
+        return f"Ship: {self.__name}, Condition: {condition}, Cargo: {cargo_contents}"
+
 
